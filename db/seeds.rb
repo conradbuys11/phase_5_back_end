@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+conrad = User.create({
+    full_name: 'Conrad Buys',
+    username: 'conradbuys',
+    #password_digest: 'password'
+})
+
+calendar = Calendar.create({
+    name: "Conrad's Calendar"
+})
+
+conrad.calendar = calendar
+calendar.user = conrad
+
+conrad.save
+calendar.save
