@@ -16,6 +16,18 @@ class EventsController < ApplicationController
         render json: event.to_json()
     end
 
+    def update
+        event = Event.find(params[:id])
+        event.update(strong_params)
+        render json: event.to_json()
+    end
+
+    def destroy
+        event = Event.find(params[:id])
+        event.destroy
+        render json: Event.all
+    end
+
     def event_and_to_dos
         events = Event.all
         to_dos = ToDo.all

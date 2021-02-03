@@ -13,8 +13,25 @@ class ToDosController < ApplicationController
         render json: to_dos.to_json()
     end
 
+    def show
+        to_do = ToDo.find(params[:id])
+        render json: to_do.to_json()
+    end
+
+    def update
+        to_do = ToDo.find(params[:id])
+        to_do.update(strong_params)
+        render json: to_do.to_json()
+    end
+
+    def destroy
+        to_do = ToDo.find(params[:id])
+        to_do.destroy
+        render json: ToDo.all
+    end
+
     private
     def strong_params
-        params.require(:to_do).permit(:title, :urgency)
+        params.require(:to_do).permit(:title, :urgency, :is_completed)
     end
 end
